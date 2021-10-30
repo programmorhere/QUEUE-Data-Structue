@@ -1,17 +1,17 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-//Doubly Circular Link List
 class List
 {
 private:
     struct Node
     {
         int data;
-        Node* next;
-        Node* prev;
+        Node *next;
+        Node *prev;
     };
-    Node* head;
+    Node *head;
+
 public:
     List()
     {
@@ -27,7 +27,7 @@ public:
     }
     void InsertatHead(int data)
     {
-        Node* newNode = new Node;
+        Node *newNode = new Node;
         if (head == NULL)
         {
             newNode->next = head;
@@ -35,7 +35,7 @@ public:
             newNode->data = data;
             head = newNode;
         }
-        
+
         newNode->data = data;
         newNode->next = head;
         newNode->prev = head->prev;
@@ -47,7 +47,7 @@ public:
     {
         if (head->next != head)
         {
-            Node* temp = head->prev->prev;
+            Node *temp = head->prev->prev;
             delete head->prev;
             temp->next = head;
             head->prev = temp;
@@ -57,7 +57,6 @@ public:
             delete head;
             head = nullptr;
         }
-
     }
     void makenull()
     {
@@ -75,11 +74,11 @@ public:
     }
     void display()
     {
-        Node* temp = head;
+        Node *temp = head;
         cout << "Display\n";
         while (temp->next != head)
         {
-           
+
             cout << temp->data << " ";
             temp = temp->next;
         }
@@ -92,6 +91,7 @@ class QUEUE
 {
 private:
     List list;
+
 public:
     void Enqueue(int data)
     {
@@ -124,33 +124,33 @@ public:
 int main()
 {
     int ch, data;
-    	QUEUE line;
-    	while (true)
-    	{
-    
-    		cout << "1.) Enqueue\n2.) Dequeue\n3.) Display\n4.) Make Null\n5.) Quit\n\nEnter : ";
-    		cin >> ch;
-    		switch (ch)
-    		{
-    		case 1:
-    			cout << "Enter data : ";
-    			cin >> data;
-    			line.Enqueue(data);
-    			break;
-    		case 2:
-    			line.Dequeue();
-    			break;
-    		case 3:
-    			line.Display();
-    			break;
-            case 4:
-                line.makeNull();
-                break;
-    		case 5:
-    			return 0;
-    		default:
-    			cout << "Enter valid Input\n";
-    			break;
-    		}
-    	}
+    QUEUE line;
+    while (true)
+    {
+
+        cout << "1.) Enqueue\n2.) Dequeue\n3.) Display\n4.) Make Null\n5.) Quit\n\nEnter : ";
+        cin >> ch;
+        switch (ch)
+        {
+        case 1:
+            cout << "Enter data : ";
+            cin >> data;
+            line.Enqueue(data);
+            break;
+        case 2:
+            line.Dequeue();
+            break;
+        case 3:
+            line.Display();
+            break;
+        case 4:
+            line.makeNull();
+            break;
+        case 5:
+            return 0;
+        default:
+            cout << "Enter valid Input\n";
+            break;
+        }
+    }
 }

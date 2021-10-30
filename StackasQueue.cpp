@@ -1,36 +1,35 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-//Program where Stack is acting as QUEUE
 
-//Node Struct
 struct Node
 {
 	int data;
-	Node* next;
+	Node *next;
 };
-//class for Stack
+
 class Stack
 {
 private:
 	class List
 	{
 	public:
-		Node* head;
+		Node *head;
 		List()
 		{
 			head = nullptr;
 		}
 	};
 	List list;
+
 public:
-	Stack() //Constructor
+	Stack()
 	{
 		list.head = NULL;
 	}
 	void Push(int data)
 	{
-		
-		Node* newNode = new Node;
+
+		Node *newNode = new Node;
 		newNode->next = list.head;
 		newNode->data = data;
 		list.head = newNode;
@@ -40,11 +39,11 @@ public:
 		if (list.head->next == NULL)
 		{
 			int temp = list.head->data;
-			delete  list.head;
+			delete list.head;
 			list.head = NULL;
 			return temp;
 		}
-		Node* temp = list.head->next;
+		Node *temp = list.head->next;
 		int temp2 = list.head->data;
 		delete list.head;
 		list.head = temp;
@@ -56,26 +55,28 @@ public:
 	}
 	void display()
 	{
-		Node* temp;
+		Node *temp;
 		temp = list.head;
 		int i = 0;
 		while (temp != NULL)
 		{
-			cout << "Element "<<temp->data << endl;
+			cout << "Element " << temp->data << endl;
 			temp = temp->next;
 			i++;
 		}
 	}
 };
 
-
-//Queue Class
 class QUEUE
 {
 private:
 	Stack primary;
 	Stack secondary;
+
 public:
+	QUEUE()
+	{
+	}
 	void Enqueue(int data)
 	{
 		if (primary.isEmpty())
@@ -119,7 +120,7 @@ public:
 		primary.Push(temp);
 		retrieve();
 	}
-	~QUEUE() //Destructor
+	~QUEUE()
 	{
 		cout << "Deleted Secondary and Primary Stack\n";
 		while (secondary.isEmpty())
@@ -133,13 +134,9 @@ public:
 	}
 };
 
-
-
-
-
 int main()
 {
-	int ch,data;
+	int ch, data;
 	QUEUE line;
 	while (true)
 	{
